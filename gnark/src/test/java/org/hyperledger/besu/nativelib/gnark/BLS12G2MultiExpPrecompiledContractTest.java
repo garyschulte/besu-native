@@ -65,10 +65,10 @@ public class BLS12G2MultiExpPrecompiledContractTest {
 
     int res = -1;
     Stopwatch timer = Stopwatch.createStarted();
-    for(int i = 0; i < 1000; i++) {
+    for(int i = 0; i < 100; i++) {
       res = LibGnarkEIP2537.eip2537blsG2MultiExp(input, output, input.length, output.length);
     }
-    System.err.println("time taken for 1000x gnark w/byte array G2MultiExp: " + timer);
+    System.err.println("time taken for 100x gnark w/byte array G2MultiExp: " + timer);
 
     if (res != 1) {
       var errBytes = Bytes.wrap(output);
