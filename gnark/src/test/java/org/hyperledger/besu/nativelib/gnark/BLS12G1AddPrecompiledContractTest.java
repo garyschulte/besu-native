@@ -57,11 +57,18 @@ public class BLS12G1AddPrecompiledContractTest {
       // skip the header row
       return;
     }
-    final byte[] input = Bytes.fromHexString(this.input).toArrayUnsafe();
+    byte[] input = null;
 
-    final byte[] output = new byte[LibGnarkEIP2537.EIP2537_PREALLOCATE_FOR_RESULT_BYTES];
+    byte[] output = null;
 
-    int res = LibGnarkEIP2537.eip2537blsG1Add(input, output, input.length, output.length);
+    int res = -1;
+    Stopwatch timer = Stopwatch.createStarted();
+    for(int i = 0; i < 1000; i++) {
+      input = Bytes.fromHexString(this.input).toArrayUnsafe();
+      output = new byte[LibGnarkEIP2537.EIP2537_PREALLOCATE_FOR_RESULT_BYTES];
+      res = LibGnarkEIP2537.eip2537blsG1Add(input, output, input.length, output.length);
+    }
+    System.err.println("time taken for 1000x gnark w/byte array G1Add: " + timer);
 
     if (res != 1) {
       var errBytes = Bytes.wrap(output);

@@ -62,7 +62,13 @@ public class BLS12G2MulPrecompiledContractTest {
 
     final byte[] output = new byte[LibGnarkEIP2537.EIP2537_PREALLOCATE_FOR_RESULT_BYTES];
 
-    int res = LibGnarkEIP2537.eip2537blsG2Mul(input, output, input.length, output.length);
+    int res = -1;
+    Stopwatch timer = Stopwatch.createStarted();
+    for(int i = 0; i < 1000; i++) {
+      res = LibGnarkEIP2537.eip2537blsG2Mul(input, output, input.length, output.length);
+    }
+    System.err.println("time taken for 1000x gnark w/byte array G2Mul: " + timer);
+
 
     if (res != 1) {
       var errBytes = Bytes.wrap(output);

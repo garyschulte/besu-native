@@ -62,7 +62,12 @@ public class BLS12MapFpToG1PrecompiledContractTest {
 
     byte[] output = new byte[LibGnarkEIP2537.EIP2537_PREALLOCATE_FOR_RESULT_BYTES];
 
-    int res = LibGnarkEIP2537.eip2537blsMapFpToG1(input, output, input.length, output.length);
+    int res = -1;
+    Stopwatch timer = Stopwatch.createStarted();
+    for(int i = 0; i < 1000; i++) {
+      res = LibGnarkEIP2537.eip2537blsMapFpToG1(input, output, input.length, output.length);
+    }
+    System.err.println("time taken for 1000x gnark w/byte array FpTpG1: " + timer);
 
     if (res != 1) {
       var errBytes = Bytes.wrap(output);
