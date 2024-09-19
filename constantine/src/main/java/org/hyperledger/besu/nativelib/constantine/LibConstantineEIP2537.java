@@ -1,31 +1,16 @@
 package org.hyperledger.besu.nativelib.constantine;
 
-import com.sun.jna.Native;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_g1add;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_g1msm;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_g1mul;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_g2add;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_g2msm;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_g2mul;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_mapFp2ToG2;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_mapFpToG1;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bls12381_pairingCheck;
 
 public class LibConstantineEIP2537 {
-    public static final boolean ENABLED;
-
-    static {
-        boolean enabled;
-        try {
-            Native.register(LibConstantineEIP2537.class, "constantinebindings");
-            enabled = true;
-        } catch (final Throwable t) {
-            t.printStackTrace();
-            enabled = false;
-        }
-        ENABLED = enabled;
-    }
-
-    public static native int bls12381_g1add(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_g2add(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_g1mul(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_g2mul(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_g1msm(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_g2msm(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_pairingCheck(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_mapFpToG1(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bls12381_mapFp2ToG2(byte[] r, int r_len, byte[] inputs, int inputs_len);
 
     public static byte[] g1add(byte[] inputs) {
         byte[] result = new byte[128];

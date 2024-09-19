@@ -48,7 +48,7 @@ public class ConstantineEIP2537G2AddTest {
         byte[] inputBytes = Bytes.fromHexString(this.input).toArrayUnsafe();
         byte[] result = new byte[192];  // G2 element is 192 bytes in BLS12-381
 
-        int status = LibConstantineEIP2537.bls12381_g2add(result, result.length, inputBytes, inputBytes.length);
+        int status = LibConstantineBindings.bls12381_g2add(result, result.length, inputBytes, inputBytes.length);
 
         Bytes expectedComputation = expectedResult == null ? null : Bytes.fromHexString(expectedResult);
         if (status != 0) {

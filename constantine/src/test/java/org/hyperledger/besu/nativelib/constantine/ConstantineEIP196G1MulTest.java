@@ -49,7 +49,7 @@ public class ConstantineEIP196G1MulTest {
         byte[] inputBytes = Bytes.fromHexString(this.input).toArrayUnsafe();
 
         byte[] result = new byte[64];
-        int status = LibConstantineEIP196.bn254_g1mul(result, result.length, inputBytes, inputBytes.length);
+        int status = LibConstantineBindings.bn254_g1mul(result, result.length, inputBytes, inputBytes.length);
 
         Bytes expectedComputation = expectedResult == null ? null : Bytes.fromHexString(expectedResult);
 

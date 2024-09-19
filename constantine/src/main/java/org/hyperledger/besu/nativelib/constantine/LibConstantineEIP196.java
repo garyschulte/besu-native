@@ -1,25 +1,10 @@
 package org.hyperledger.besu.nativelib.constantine;
 
-import com.sun.jna.Native;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bn254_g1add;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bn254_g1mul;
+import static org.hyperledger.besu.nativelib.constantine.LibConstantineBindings.bn254_pairingCheck;
 
 public class LibConstantineEIP196 {
-    public static final boolean ENABLED;
-
-    static {
-        boolean enabled;
-        try {
-            Native.register(LibConstantineEIP196.class, "constantinebindings");
-            enabled = true;
-        } catch (final Throwable t) {
-            t.printStackTrace();
-            enabled = false;
-        }
-        ENABLED = enabled;
-    }
-
-    public static native int bn254_g1add(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bn254_g1mul(byte[] r, int r_len, byte[] inputs, int inputs_len);
-    public static native int bn254_pairingCheck(byte[] r, int r_len, byte[] inputs, int inputs_len);
 
     public static byte[] add(byte[] inputs) {
         byte[] result = new byte[64];

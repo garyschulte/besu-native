@@ -52,7 +52,7 @@ public class ConstantineEIP2537G1AddTest {
         byte[] result = new byte[96];
 
         // Call the native G1 add function for EIP2537
-        int status = LibConstantineEIP2537.bls12381_g1add(result, result.length, inputBytes, inputBytes.length);
+        int status = LibConstantineBindings.bls12381_g1add(result, result.length, inputBytes, inputBytes.length);
 
         // Convert the expected result to Bytes object
         Bytes expectedComputation = expectedResult == null ? null : Bytes.fromHexString(expectedResult);

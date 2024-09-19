@@ -48,7 +48,7 @@ public class ConstantineEIP2537FpToG1Test {
         byte[] inputBytes = Bytes.fromHexString(this.input).toArrayUnsafe();
         byte[] result = new byte[96];  // G1 element in BLS12-381 is 96 bytes
 
-        int status = LibConstantineEIP2537.bls12381_mapFpToG1(result, result.length, inputBytes, inputBytes.length);
+        int status = LibConstantineBindings.bls12381_mapFpToG1(result, result.length, inputBytes, inputBytes.length);
 
         Bytes expectedComputation = expectedResult == null ? null : Bytes.fromHexString(expectedResult);
         if (status != 0) {

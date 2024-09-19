@@ -47,7 +47,7 @@ public class ConstantineEIP196PairingCheckTest {
         byte[] inputBytes = Bytes.fromHexString(this.input).toArrayUnsafe();
 
         byte[] result = new byte[32];
-        int status = LibConstantineEIP196.bn254_pairingCheck(result, result.length, inputBytes, inputBytes.length);
+        int status = LibConstantineBindings.bn254_pairingCheck(result, result.length, inputBytes, inputBytes.length);
 
         Bytes expectedComputation = expectedResult == null ? null : Bytes.fromHexString(expectedResult);
 

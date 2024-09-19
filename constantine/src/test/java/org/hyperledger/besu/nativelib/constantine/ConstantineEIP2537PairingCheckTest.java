@@ -52,7 +52,7 @@ public class ConstantineEIP2537PairingCheckTest {
         byte[] result = new byte[32];
 
         // Call the native Pairing Check function for EIP2537
-        int status = LibConstantineEIP2537.bls12381_pairingCheck(result, result.length, inputBytes, inputBytes.length);
+        int status = LibConstantineBindings.bls12381_pairingCheck(result, result.length, inputBytes, inputBytes.length);
 
         // Convert the expected result to Bytes object
         Bytes expectedComputation = expectedResult == null ? null : Bytes.fromHexString(expectedResult);
