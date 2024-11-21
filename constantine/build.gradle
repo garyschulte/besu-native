@@ -46,6 +46,19 @@ task linuxArm64LibCopy(type: Copy) {
     into 'build/resources/main/linux-gnu-aarch64'
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += "--enable-preview"
+    options.release = 21 // Set the Java release version
+}
+
+tasks.withType(Test) {
+    jvmArgs += "--enable-preview"
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs += "--enable-preview"
+}
+
 processResources.dependsOn macArmLibCopy, macLibCopy, linuxLibCopy, linuxArm64LibCopy
 
 test {
